@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register to join the Online Skill Exchange and start exchanging skills with others.">
+    <meta name="keywords" content="Register, Sign Up, Skill Exchange, Online Learning">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Register</h1>
+    </header>
+    <nav aria-label="Main navigation">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="products.html">Explore Skills</a></li>
+        </ul>
+    </nav>
+
+    <section class="form-section">
+        <!-- Added h2 heading to describe the form -->
+        <h2>Create Your Account</h2> <!-- This resolves the warning -->
+
+        <form id="registerForm" autocomplete="off" onsubmit="return validateForm()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required aria-required="true" autocomplete="name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required aria-required="true" autocomplete="email">
+
+            <label for="password">Password:</label>
+            <div class="password-container">
+                <input type="password" id="password" name="password" placeholder="Enter your password" required aria-required="true" autocomplete="new-password" minlength="8">
+                <button type="button" id="togglePassword" class="eye-icon" aria-label="Show/Hide Password">&#128065;</button>
+            </div>
+
+            <label for="confirmPassword">Re-type Password:</label>
+            <div class="password-container">
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-type your password" required aria-required="true" autocomplete="new-password">
+                <button type="button" id="toggleConfirmPassword" class="eye-icon" aria-label="Show/Hide Confirm Password">&#128065;</button>
+            </div>
+
+            <button type="submit">Register</button>
+            <p id="errorMessage" class="error-message" style="display:none; color:red;"></p>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Online Skill Exchange. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Password visibility toggle
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const password = document.getElementById('password');
+            if (password.type === 'password') {
+                password.type = 'text';
+                this.innerHTML = '&#128065;'; // Change icon if needed
+            } else {
+                password.type = 'password';
+                this.innerHTML = '&#128065;';
+            }
+        });
+
+        document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+            const confirmPassword = document.getElementById('confirmPassword');
+            if (confirmPassword.type === 'password') {
+                confirmPassword.type = 'text';
+                this.innerHTML = '&#128065;';
+            } else {
+                confirmPassword.type = 'password';
+                this.innerHTML = '&#128065;';
+            }
+        });
+
+        // Form validation
+        function validateForm() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (password !== confirmPassword) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'Passwords do not match!';
+                return false;
+            }
+
+            if (password.length < 8) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'Password must be at least 8 characters!';
+                return false;
+            }
+
+            errorMessage.style.display = 'none';
+            return true;
+        }
+    </script>
+</body>
+</html>

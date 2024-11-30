@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login to your Online Skill Exchange account to access and manage your skills.">
+    <meta name="keywords" content="Login, Sign In, Skill Exchange, Online Learning">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Login</h1>
+    </header>
+    <nav aria-label="Main navigation">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="products.html">Explore Skills</a></li>
+        </ul>
+    </nav>
+
+    <section class="form-section">
+        <!-- Added h2 heading to the section -->
+        <h2>Login to Your Account</h2> <!-- This resolves the warning -->
+        <form id="loginForm" autocomplete="off" onsubmit="return validateLoginForm()">
+            <label for="loginEmail">Email:</label>
+            <input type="email" id="loginEmail" name="loginEmail" placeholder="Enter your email" required aria-required="true" autocomplete="email">
+
+            <!-- Password field with toggle visibility button -->
+            <label for="loginPassword">Password:</label>
+            <div class="password-container">
+                <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter your password" required aria-required="true" autocomplete="current-password">
+                <button type="button" id="toggleLoginPassword" class="eye-icon" aria-label="Show/Hide Password">&#128065;</button>
+            </div>
+
+            <button type="submit">Login</button>
+            <p id="loginErrorMessage" class="error-message" style="display:none; color:red;"></p>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Online Skill Exchange. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Password visibility toggle
+        document.getElementById('toggleLoginPassword').addEventListener('click', function() {
+            const loginPassword = document.getElementById('loginPassword');
+            if (loginPassword.type === 'password') {
+                loginPassword.type = 'text';
+                this.innerHTML = '&#128065;';
+            } else {
+                loginPassword.type = 'password';
+                this.innerHTML = '&#128065;';
+            }
+        });
+
+        // Login form validation
+        function validateLoginForm() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const errorMessage = document.getElementById('loginErrorMessage');
+
+            if (email === '' || password === '') {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'Both fields are required!';
+                return false;
+            }
+
+            errorMessage.style.display = 'none';
+            return true;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View and manage your profile on the Online Skill Exchange platform.">
+    <meta name="keywords" content="Profile, User Information, Skill Exchange">
+    <title>Your Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Your Profile</h1>
+    </header>
+    <nav aria-label="Main navigation">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="products.html">Explore Skills</a></li>
+        </ul>
+    </nav>
+
+    <section class="profile-section">
+        <h2>Profile Information</h2>
+        <p id="profileName">Name: <span id="displayName">Loading...</span></p>
+        <p id="profileEmail">Email: <span id="displayEmail">Loading...</span></p>
+
+        <div class="profile-actions">
+            <a href="#" id="editProfileBtn" class="btn">Edit Profile</a>
+            <button id="logoutBtn" class="btn">Logout</button>
+        </div>
+        <a href="products.html" class="btn">Explore Skills</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Online Skill Exchange. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Simulating user data (replace with actual backend data retrieval if applicable)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Example data - replace with actual data from localStorage, session, or backend
+            const userData = {
+                name: localStorage.getItem('userName') || 'Aayush Acharya',
+                email: localStorage.getItem('userEmail') || 'acharyaayush.np189@gmail.com'
+            };
+
+            // Display user data
+            document.getElementById('displayName').textContent = userData.name;
+            document.getElementById('displayEmail').textContent = userData.email;
+
+            // Logout button functionality
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                // Clear user data from localStorage (if used)
+                localStorage.removeItem('userName');
+                localStorage.removeItem('userEmail');
+
+                // Redirect to login page
+                window.location.href = 'login.html';
+            });
+
+            // Edit profile button (Redirect to a future edit profile page or add inline editing)
+            document.getElementById('editProfileBtn').addEventListener('click', function() {
+                alert('Feature Coming Soon!'); // Replace with your edit profile feature
+            });
+        });
+    </script>
+</body>
+</html>
